@@ -1,8 +1,8 @@
 import Bird from './Bird'
 
 export default class Game {
-
     birds = []
+    counter = 0
 
     constructor() {
         this.createBirds()
@@ -26,19 +26,12 @@ export default class Game {
 
     removeBird = bird => {
         const index = this.birds.indexOf(bird)
-        this.birds = [
-            ...this.birds.slice(0, index),
-            ...this.birds.slice(index + 1)
-        ]
-
-        console.log(this.birds.length)
-
+        this.birds = [...this.birds.slice(0, index), ...this.birds.slice(index + 1)]
     }
 
     loop() {
         this.counter++ % 60 === 0 && this.addBird()
         this.birds.forEach(bird => bird.update())
         requestAnimationFrame(() => this.loop())
-
     }
 }

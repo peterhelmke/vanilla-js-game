@@ -4,4 +4,7 @@
   height: 40px;
   border-radius: 50%; }
 
+.bird__hit {
+  background: red !important; }
+
 /*# sourceMappingURL=style.css.map */

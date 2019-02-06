@@ -135,8 +135,10 @@ function () {
   _createClass(Bird, [{
     key: "addClickHandler",
     value: function addClickHandler() {
+      var _this = this;
+
       this.el.addEventListener('click', function () {
-        return console.log('I shot the sheriff!');
+        return _this.el.classList.add('bird__hit');
       });
     }
   }, {
@@ -208,11 +210,12 @@ function () {
 
     _defineProperty(this, "birds", []);
 
+    _defineProperty(this, "counter", 0);
+
     _defineProperty(this, "removeBird", function (bird) {
       var index = _this.birds.indexOf(bird);
 
       _this.birds = [].concat(_toConsumableArray(_this.birds.slice(0, index)), _toConsumableArray(_this.birds.slice(index + 1)));
-      console.log(_this.birds.length);
     });
 
     this.createBirds();
