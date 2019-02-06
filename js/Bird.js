@@ -1,7 +1,7 @@
 export default class Bird {
     defaultConfig = {
-        color: 'teal',
-        speed: 2 + Math.random() * 8,
+        color: 'steelblue',
+        speed: 1 + Math.random() * 2,
         position: 0,
     }
 
@@ -26,8 +26,9 @@ export default class Bird {
     }
 
     addClickHandler() {
-        this.el.addEventListener('click', () => this.el.classList.add('bird__hit'))
-
+        this.el.addEventListener('click', () => {
+            this.el.classList.add('bird__hit')
+        })
     }
 
     update() {
