@@ -14,12 +14,17 @@ export default class Bird {
             color,
             speed,
             position,
-            removeBird
+            onRemove,
+            onClick,
+            onEscape,
+
         } = config
 
+        this.onClick = onClick
+        this.onEscape = onEscape
         this.color = color
         this.position = position
-        this.removeBird = removeBird
+        this.onRemove = onRemove
         this.speed = speed
         this.el = this.render()
         this.addClickHandler()
@@ -27,15 +32,21 @@ export default class Bird {
 
     addClickHandler() {
         this.el.addEventListener('click', () => {
-            this.el.classList.add('bird__hit')
+            this.onClick()
+            this.remove()
         })
+    }
+
+    remove() {
+        this.onRemove(this)
+        this.el.remove()
     }
 
     update() {
         this.position = this.position + this.speed
         if (this.position > window.innerWidth) {
-            this.removeBird(this)
-            this.el.remove()
+            this.remove()
+            this.onEscape()
         } else {
             this.el.style.left = this.position + 'px'
         }

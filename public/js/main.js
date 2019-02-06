@@ -123,10 +123,14 @@ function () {
         color = _config.color,
         speed = _config.speed,
         position = _config.position,
-        removeBird = _config.removeBird;
+        onRemove = _config.onRemove,
+        onClick = _config.onClick,
+        onEscape = _config.onEscape;
+    this.onClick = onClick;
+    this.onEscape = onEscape;
     this.color = color;
     this.position = position;
-    this.removeBird = removeBird;
+    this.onRemove = onRemove;
     this.speed = speed;
     this.el = this.render();
     this.addClickHandler();
@@ -138,8 +142,16 @@ function () {
       var _this = this;
 
       this.el.addEventListener('click', function () {
-        _this.el.classList.add('bird__hit');
+        _this.onClick();
+
+        _this.remove();
       });
+    }
+  }, {
+    key: "remove",
+    value: function remove() {
+      this.onRemove(this);
+      this.el.remove();
     }
   }, {
     key: "update",
@@ -147,8 +159,8 @@ function () {
       this.position = this.position + this.speed;
 
       if (this.position > window.innerWidth) {
-        this.removeBird(this);
-        this.el.remove();
+        this.remove();
+        this.onEscape();
       } else {
         this.el.style.left = this.position + 'px';
       }
@@ -281,6 +293,14 @@ function () {
       _this.birds = [].concat(_toConsumableArray(_this.birds.slice(0, index)), _toConsumableArray(_this.birds.slice(index + 1)));
     });
 
+    _defineProperty(this, "updatePlayerPoints", function () {
+      _this.counter.addPlayerPoint();
+    });
+
+    _defineProperty(this, "updateBirdsPoints", function () {
+      _this.counter.addBirdsPoint();
+    });
+
     this.createBirds();
     this.createCounter();
     this.loop();
@@ -290,12 +310,6 @@ function () {
     key: "createCounter",
     value: function createCounter() {
       this.counter = new _Counter__WEBPACK_IMPORTED_MODULE_1__["default"]();
-      this.counter.addPlayerPoint();
-      this.counter.addPlayerPoint();
-      this.counter.addBirdsPoint();
-      this.counter.addBirdsPoint();
-      this.counter.addBirdsPoint();
-      this.counter.addBirdsPoint();
     }
   }, {
     key: "createBirds",
@@ -309,7 +323,9 @@ function () {
     key: "addBird",
     value: function addBird() {
       var config = {
-        removeBird: this.removeBird
+        onRemove: this.removeBird,
+        onClick: this.updatePlayerPoints,
+        onEscape: this.updateBirdsPoints
       };
       this.birds = [].concat(_toConsumableArray(this.birds), [new _Bird__WEBPACK_IMPORTED_MODULE_0__["default"](config)]);
     }
@@ -318,7 +334,7 @@ function () {
     value: function loop() {
       var _this2 = this;
 
-      this.loopCounter++ % 60 === 0 && this.addBird();
+      Math.random() < 1 / 60 && this.addBird();
       this.birds.forEach(function (bird) {
         return bird.update();
       });

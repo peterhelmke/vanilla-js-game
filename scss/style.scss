@@ -12,17 +12,25 @@ body {
     border-radius: 50%;
 }
 
-.bird__hit {
-    background: red !important;
-}
+
 
 .counter {
-    font-style: sans-serif;
-    margin-left: auto;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: gold;
+    right: 10px;
+    top: 10px;
+    box-shadow: 0 0 80px orange;
+    font-size: 3em;
+    text-align: center;
+    color: white;
+    /*margin-left: auto;
     border: 3px solid black;
     text-align: center;
-    font-size: 8.5em;
+    font-size: 5em;
     width: 270px;
     height: 150px;
-    background: lightblue;
+    background: lightblue;*/
 }

@@ -14,12 +14,6 @@ export default class Game {
     createCounter() {
 
         this.counter = new Counter()
-        this.counter.addPlayerPoint()
-        this.counter.addPlayerPoint()
-        this.counter.addBirdsPoint()
-        this.counter.addBirdsPoint()
-        this.counter.addBirdsPoint()
-        this.counter.addBirdsPoint()
     }
 
     createBirds() {
@@ -31,7 +25,9 @@ export default class Game {
 
     addBird() {
         const config = {
-            removeBird: this.removeBird,
+            onRemove: this.removeBird,
+            onClick: this.updatePlayerPoints,
+            onEscape: this.updateBirdsPoints,
         }
 
         this.birds = [...this.birds, new Bird(config)]
@@ -42,8 +38,16 @@ export default class Game {
         this.birds = [...this.birds.slice(0, index), ...this.birds.slice(index + 1)]
     }
 
+    updatePlayerPoints = () => {
+        this.counter.addPlayerPoint()
+    }
+
+    updateBirdsPoints = () => {
+        this.counter.addBirdsPoint()
+    }
+
     loop() {
-        this.loopCounter++ % 60 === 0 && this.addBird()
+        Math.random() < 1 / 60 && this.addBird()
         this.birds.forEach(bird => bird.update())
         requestAnimationFrame(() => this.loop())
     }
