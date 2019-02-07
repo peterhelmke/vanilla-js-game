@@ -1,4 +1,5 @@
 body {
+    overflow: hidden;
     margin: 0;
     height: 100vh;
     background-image: linear-gradient(skyblue 80%, lightgreen 20%);
@@ -6,15 +7,16 @@ body {
 
 .bird {
     position: absolute;
-    top: 300px;
-    width: 40px;
-    height: 40px;
+    top: 100px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
 }
 
-
-
 .counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     width: 150px;
     height: 150px;
@@ -23,14 +25,210 @@ body {
     right: 10px;
     top: 10px;
     box-shadow: 0 0 80px orange;
-    font-size: 3em;
-    text-align: center;
+    font-size: 2em;
     color: white;
-    /*margin-left: auto;
-    border: 3px solid black;
-    text-align: center;
-    font-size: 5em;
-    width: 270px;
-    height: 150px;
-    background: lightblue;*/
+}
+
+.hunter {
+    transform: scale(0.3);
+    position: absolute;
+    left: 50%;
+    bottom: 200px;
+    background: #415B2D;
+    width: 1em;
+    height: 1em;
+    box-shadow:
+        /*-18*/
+        -18em -18em #9158B2,
+        /*-15*/
+        -21em -15em #4C2E5B, -18em -15em #9158B2, 0em -15em #C31E1B, 1em -15em #C31E1B, 7em -15em #000000,
+        /*-14*/
+        -22em -14em #4C2E5B, -21em -14em #9158B2, -20em -14em #4C2E5B, -19em -14em #9158B2, -4em -14em #8C8C8C,
+        -1em -14em #C31E1B, 0em -14em #C31E1B, 1em -14em #C31E1B, 2em -14em #C31E1B, 6em -14em #000000, 7em -14em #000000,
+        8em -14em #000000,
+        /*-13*/
+        -21em -13em #4C2E5B, -20em -13em #9158B2, -19em -13em #4C2E5B, -3em -13em #8C8C8C, -1em -13em #C31E1B,
+        0em -13em #E35558, 1em -13em #E35558, 2em -13em #C31E1B, 5em -13em #000000, 6em -13em #000000, 7em -13em #000000,
+        /*-12*/
+        -21em -12em #4C2E5B, -20em -12em #9158B2, -19em -12em #9158B2, -18em -12em #4C2E5B, -17em -12em #9158B2,
+        -2em -12em #C31E1B, -1em -12em #E35558, 0em -12em #000000, 1em -12em #000000, 2em -12em #E35558, 3em -12em #C31E1B,
+        4em -12em #000000, 5em -12em #000000, 6em -12em #000000,
+        /*-11*/
+        -20em -11em #4C2E5B, -19em -11em #9158B2, -18em -11em #9158B2, -17em -11em #4C2E5B, -3em -11em #645F63,
+        -2em -11em #880F13, -1em -11em #000000, 0em -11em #8C8C8C, 1em -11em #8C8C8C, 2em -11em #000000, 3em -11em #880F13,
+        4em -11em #ADADAD, 5em -11em #8C8C8C, 6em -11em #494949,
+        /*-10*/
+        -20em -10em #4C2E5B, -19em -10em #9158B2, -18em -10em #4C2E5B, -17em -10em #9158B2, -16em -10em #4C2E5B,
+        -14em -10em #9158B2, -4em -10em #645F63, -3em -10em #494949, -2em -10em #494949, -1em -10em #000000, 0em -10em #000000,
+        1em -10em #000000, 2em -10em #000000, 3em -10em #494949, 4em -10em #494949, 5em -10em #ADADAD, 6em -10em #8C8C8C,
+        /*-9*/
+        -20em -9em #4C2E5B, -19em -9em #9158B2, -18em -9em #4C2E5B, -17em -9em #4C2E5B, -16em -9em #9158B2, -15em -9em #4C2E5B,
+        -6em -9em #645F63, -5em -9em #645F63, -4em -9em #494949, -3em -9em #645F63, -2em -9em #214215, -1em -9em #214215,
+        0em -9em #062407, 1em -9em #062407, 2em -9em #214215, 3em -9em #214215, 4em -9em #645F63, 5em -9em #494949,
+        6em -9em #ADADAD, 7em -9em #8C8C8C,
+        /*-8*/
+        -20em -8em #4C2E5B, -19em -8em #9158B2, -18em -8em #4C2E5B, -16em -8em #4C2E5B, -15em -8em #9158B2, -14em -8em #4C2E5B,
+        -5em -8em #494949, -4em -8em #645F63, -3em -8em #4B7941, -2em -8em #4B7941, -1em -8em #4B7941,
+        0em -8em #214215, 1em -8em #214215, 2em -8em #4B7941, 3em -8em #4B7941, 4em -8em #4B7941, 5em -8em #645F63,
+        6em -8em #494949,
+        /*-7*/
+        -19em -7em #4C2E5B, -18em -7em #9158B2, -17em -7em #4C2E5B, -15em -7em #4C2E5B, -14em -7em #9158B2, -13em -7em #4C2E5B,
+        -6em -7em #645F63, -5em -7em #494949, -4em -7em #494949, -3em -7em #4B7941, -2em -7em #4B7941, -1em -7em #36A519,
+        0em -7em #214215, 1em -7em #214215, 2em -7em #36A519, 3em -7em #4B7941, 4em -7em #4B7941, 5em -7em #494949,
+        6em -7em #494949, 7em -7em #645F63,
+        /*-6*/
+        -19em -6em #4C2E5B, -18em -6em #9158B2, -17em -6em #4C2E5B, -16em -6em #4C2E5B, -14em -6em #4C2E5B, -13em -6em #9158B2,
+        -12em -6em #4C2E5B, -6em -6em #645F63, -5em -6em #645F63, -4em -6em #494949, -3em -6em #200300, -2em -6em #214215,
+        -1em -6em #214215, 0em -6em #36A519, 1em -6em #36A519, 2em -6em #214215, 3em -6em #214215, 4em -6em #494949,
+        5em -6em #494949, 6em -6em #000000, 7em -6em #494949,
+        /*-5*/
+        -18em -5em #4C2E5B, -17em -5em #9158B2, -16em -5em #9158B2, -15em -5em #4C2E5B, -14em -5em #4C2E5B, -13em -5em #4C2E5B,
+        -12em -5em #9158B2, -11em -5em #4C2E5B, -7em -5em #645F63, -6em -5em #494949, -5em -5em #645F63, -4em -5em #200300,
+        -3em -5em #200300, -2em -5em #4B7941, -1em -5em #4B7941, 0em -5em #214215, 1em -5em #214215,
+        2em -5em #4B7941, 3em -5em #4B7941, 4em -5em #494949, 5em -5em #000000, 6em -5em #000000, 7em -5em #000000,
+        8em -5em #494949,
+        /*-4*/
+        -17em -4em #4C2E5B, -16em -4em #4C2E5B, -15em -4em #9158B2, -14em -4em #9158B2, -13em -4em #9158B2, -12em -4em #4C2E5B,
+        -11em -4em #CFD689, -10em -4em #4C2E5B, -8em -4em #645F63, -7em -4em #645F63, -6em -4em #645F63, -5em -4em #200300,
+        -4em -4em #200300, -3em -4em #200300, -2em -4em #4B7941, -1em -4em #4B7941, 0em -4em #214215, 1em -4em #214215,
+        2em -4em #4B7941, 3em -4em #4B7941, 4em -4em #494949, 5em -4em #000000, 6em -4em #000000, 7em -4em #000000,
+        8em -4em #000000,
+        /*-3*/
+        -15em -3em #4C2E5B, -14em -3em #4C2E5B, -13em -3em #4C2E5B, -12em -3em #CFD689, -11em -3em #CFD689, -10em -3em #CFD689,
+        -9em -3em #4C2E5B, -8em -3em #645F63, -7em -3em #645F63, -6em -3em #200300, -5em -3em #200300, -4em -3em #200300,
+        -3em -3em #200300, -2em -3em #494949, -1em -3em #4B7941, 0em -3em #4B7941, 1em -3em #4B7941, 2em -3em #4B7941,
+        3em -3em #4E4E4E, 6em -3em #000000, 7em -3em #000000, 8em -3em #000000, 9em -3em #000000, 11em -3em #000000,
+        /*-2*/
+        -12em -2em #4C2E5B, -11em -2em #CFD689, -10em -2em #4C2E5B, -9em -2em #9158B2, -8em -2em #4C2E5B, -7em -2em #200300,
+        -6em -2em #200300, -5em -2em #200300, -4em -2em #200300, -3em -2em #494949, -2em -2em #494949, -1em -2em #494949,
+        0em -2em #8C8C8C, 1em -2em #8C8C8C, 2em -2em #494949, 3em -2em #494949, 4em -2em #494949, 8em -2em #000000,
+        9em -2em #000000, 10em -2em #000000, 12em -2em #000000,
+        /*-1*/
+        -12em -1em #4C2E5B, -11em -1em #9158B2, -10em -1em #4C2E5B, -9em -1em #4C2E5B, -8em -1em #9158B2, -7em -1em #200300,
+        -6em -1em #200300, -5em -1em #200300, -4em -1em #200300, -3em -1em #415B2D, -2em -1em #4B7941, -1em -1em #415B2D,
+        0em -1em #214215, 1em -1em #214215, 2em -1em #415B2D, 3em -1em #4B7941, 4em -1em #415B2D, 8em -1em #4E4E4E,
+        9em -1em #000000, 10em -1em #000000, 11em -1em #000000, 13em -1em #000000,
+        /*0*/
+        -11em 0 #9158B2, -10em 0 #4C2E5B, -9em 0 #200300, -8em 0 #4C2E5B, -7em 0 #9158B2, -6em 0 #200300, -5em 0 #200300,
+        -4em 0 #415B2D, -3em 0 #415B2D, -2em 0 #415B2D, -1em 0 #214215, 1em 0 #415B2D, 2em 0 #214215, 3em 0 #415B2D,
+        4em 0 #415B2D, 5em 0 #415B2D, 9em 0 #CFD689, 10em 0 #000000, 11em 0 #000000, 12em 0 #000000, 14em 0 #000000,
+        /*1*/
+        -17em 1em #C31E1B, -13em 1em #C31E1B, -12em 1em #C31E1B, -11em 1em #4C2E5B, -10em 1em #9158B2, -9em 1em #4C2E5B,
+        -8em 1em #200300, -7em 1em #4C2E5B, -6em 1em #9158B2, -5em 1em #200300, -4em 1em #8C8C8C, -3em 1em #415B2D,
+        -2em 1em #415B2D, -1em 1em #415B2D, 0em 1em #214215, 1em 1em #214215, 2em 1em #415B2D, 3em 1em #415B2D,
+        4em 1em #415B2D, 5em 1em #8C8C8C, 9em 1em #CFD689, 10em 1em #CFD689, 11em 1em #000000, 12em 1em #000000,
+        13em 1em #000000,
+        /*2*/
+        -17em 2em #3B0507, -16em 2em #C31E1B, -15em 2em #C31E1B, -14em 2em #C31E1B, -13em 2em #3B0507, -12em 2em #3B0507,
+        -11em 2em #4C2E5B, -10em 2em #9158B2, -9em 2em #4C2E5B, -8em 2em #4C2E5B, -7em 2em #200300, -6em 2em #4C2E5B,
+        -5em 2em #415B2D, -4em 2em #415B2D, -3em 2em #8C8C8C, -2em 2em #415B2D, -1em 2em #415B2D, 0em 2em #214215,
+        1em 2em #214215, 2em 2em #415B2D, 3em 2em #415B2D, 4em 2em #8C8C8C, 5em 2em #415B2D, 6em 2em #415B2D,
+        10em 2em #000000, 12em 2em #000000, 13em 2em #000000, 14em 2em #000000,
+        /*3*/
+        -16em 3em #3B0507, -15em 3em #3B0507, -14em 3em #3B0507, -13em 3em #3B0507, -12em 3em #3B0507, -11em 3em #3B0507,
+        -10em 3em #4C2E5B, -9em 3em #9158B2, -8em 3em #9158B2, -7em 3em #4C2E5B, -6em 3em #200300, -5em 3em #415B2D,
+        -4em 3em #415B2D, -3em 3em #415B2D, -2em 3em #8C8C8C, -1em 3em #415B2D, 0em 3em #200300, 1em 3em #200300,
+        2em 3em #415B2D, 3em 3em #8C8C8C, 4em 3em #415B2D, 5em 3em #415B2D, 6em 3em #415B2D,
+        11em 3em #000000, 12em 3em #000000, 13em 3em #000000, 14em 3em #000000, 15em 3em #000000,
+        /*4*/
+        -14em 4em #3B0507, -13em 4em #3B0507, -12em 4em #3B0507, -11em 4em #3B0507, -10em 4em #3B0507, -9em 4em #4C2E5B,
+        -8em 4em #4C2E5B, -7em 4em #9158B2, -6em 4em #415B2D, -5em 4em #415B2D, -4em 4em #415B2D, -3em 4em #415B2D,
+        -2em 4em #415B2D, -1em 4em #200300, 0em 4em #200300, 1em 4em #200300, 3em 4em #415B2D, 4em 4em #415B2D,
+        5em 4em #415B2D, 6em 4em #415B2D, 7em 4em #415B2D, 10em 4em #000000, 11em 4em #000000, 12em 4em #000000,
+        14em 4em #000000, 15em 4em #000000, 16em 4em #000000,
+        /*5*/
+        -13em 5em #3B0507, -12em 5em #3B0507, -11em 5em #3B0507, -10em 5em #3B0507, -9em 5em #3B0507, -8em 5em #3B0507,
+        -7em 5em #4C2E5B, -6em 5em #415B2D, -5em 5em #4B7941, -4em 5em #415B2D, -3em 5em #415B2D,
+        -2em 5em #9158B2, -1em 5em #4C2E5B, 0em 5em #200300, 1em 5em #200300, 3em 5em #415B2D, 4em 5em #415B2D,
+        5em 5em #415B2D, 6em 5em #4B7941, 7em 5em #415B2D, 11em 5em #000000, 15em 5em #000000, 16em 5em #000000,
+        17em 5em #000000,
+        /*6*/
+        -12em 6em #3B0507, -11em 6em #3B0507, -10em 6em #3B0507, -9em 6em #3B0507, -8em 6em #3B0507, -7em 6em #3B0507,
+        -6em 6em #415B2D, -5em 6em #415B2D, -4em 6em #415B2D, -3em 6em #415B2D, -2em 6em #4C2E5B, -1em 6em #9158B2,
+        0em 6em #4C2E5B, 3em 6em #415B2D, 4em 6em #415B2D, 5em 6em #415B2D, 6em 6em #415B2D, 7em 6em #415B2D,
+        16em 6em #000000, 17em 6em #000000, 18em 6em #000000,
+        /*7*/
+        -12em 7em #3B0507, -11em 7em #3B0507, -9em 7em #3B0507, -8em 7em #3B0507, -7em 7em #3B0507, -6em 7em #3B0507,
+        -5em 7em #214215, -4em 7em #214215, -3em 7em #415B2D, -1em 7em #4C2E5B, 4em 7em #415B2D, 5em 7em #214215, 6em 7em #214215,
+        17em 7em #000000, 18em 7em #000000, 19em 7em #000000,
+        /*8*/
+        -10em 8em #3B0507, -9em 8em #3B0507, -8em 8em #3B0507, -7em 8em #3B0507, -6em 8em #8C8C8C, -5em 8em #8C8C8C,
+        -4em 8em #214215, -3em 8em #415B2D, 4em 8em #415B2D, 5em 8em #214215, 6em 8em #8C8C8C, 7em 8em #8C8C8C,
+        18em 8em #000000,
+        /*9*/
+        -10em 9em #3B0507, -9em 9em #3B0507, -8em 9em #3B0507, -7em 9em #3B0507, -6em 9em #8C8C8C, -5em 9em #8C8C8C,
+        -4em 9em #645F63, -3em 9em #3B0507, -2em 9em #3B0507, 5em 9em #645F63, 6em 9em #8C8C8C, 7em 9em #8C8C8C,
+        /*10*/
+        -8em 10em #3B0507, -7em 10em #3B0507, -6em 10em #645F63, -5em 10em #645F63, -4em 10em #4E3F0E, -3em 10em #3B0507,
+        5em 10em #4E3F0E, 6em 10em #645F63, 7em 10em #645F63,
+        /*11*/
+        -7em 11em #664B0B, -6em 11em #4E3F0E, -5em 11em #4E3F0E, -4em 11em #664B0B, 5em 11em #664B0B, 6em 11em #4E3F0E,
+        7em 11em #4E3F0E, 8em 11em #664B0B,
+        /*12*/
+        -7em 12em #664B0B, -6em 12em #664B0B, -5em 12em #664B0B, -4em 12em #664B0B, 5em 12em #664B0B, 6em 12em #664B0B,
+        7em 12em #664B0B, 8em 12em #664B0B,
+        /*13*/
+        -7em 13em #664B0B, -6em 13em #664B0B, -5em 13em #664B0B, 6em 13em #664B0B, 7em 13em #664B0B, 8em 13em #664B0B,
+        /*14*/
+        -7em 14em #664B0B, -6em 14em #664B0B, -5em 14em #664B0B, 6em 14em #664B0B, 7em 14em #664B0B, 8em 14em #664B0B,
+        /*15*/
+        -7em 15em #664B0B, -6em 15em #664B0B, 7em 15em #664B0B, 8em 15em #664B0B,
+        /*16*/
+        -8em 16em #4E3F0E, -7em 16em #4E3F0E, -6em 16em #664B0B, 7em 16em #664B0B, 8em 16em #4E3F0E, 9em 16em #4E3F0E,
+        /*17*/
+        -8em 17em #664B0B, -7em 17em #664B0B, -6em 17em #4E3F0E, 7em 17em #4E3F0E, 8em 17em #664B0B, 9em 17em #664B0B,
+        /*18*/
+        -9em 18em #664B0B, -8em 18em #8F6608, -7em 18em #8F6608, -6em 18em #664B0B, 7em 18em #664B0B, 8em 18em #8F6608,
+        9em 18em #8F6608, 10em 18em #664B0B;
+}
+
+.hunter:after {
+    /* Character Shadow */
+    position: absolute;
+    z-index: -1;
+    content: '';
+    left: 0em;
+    top: 18em;
+    background: rgba(0, 0, 0, .50);
+    width: 1em;
+    height: 1em;
+    box-shadow:
+        /*-2*/
+        -7em -2em rgba(0, 0, 0, .25), -6em -2em rgba(0, 0, 0, .25), -5em -2em rgba(0, 0, 0, .25), -4em -2em rgba(0, 0, 0, .25),
+        -3em -2em rgba(0, 0, 0, .25), -2em -2em rgba(0, 0, 0, .25), -1em -2em rgba(0, 0, 0, .25), 0em -2em rgba(0, 0, 0, .25),
+        1em -2em rgba(0, 0, 0, .25), 2em -2em rgba(0, 0, 0, .25), 3em -2em rgba(0, 0, 0, .25), 4em -2em rgba(0, 0, 0, .25),
+        5em -2em rgba(0, 0, 0, .25), 6em -2em rgba(0, 0, 0, .25), 7em -2em rgba(0, 0, 0, .25), 8em -2em rgba(0, 0, 0, .25),
+        /*-1*/
+        -13em -1em rgba(0, 0, 0, .25), -12em -1em rgba(0, 0, 0, .25), -11em -1em rgba(0, 0, 0, .25), -10em -1em rgba(0, 0, 0, .25),
+        -9em -1em rgba(0, 0, 0, .50), -8em -1em rgba(0, 0, 0, .50), -7em -1em rgba(0, 0, 0, .50), -6em -1em rgba(0, 0, 0, .50),
+        -5em -1em rgba(0, 0, 0, .50), -4em -1em rgba(0, 0, 0, .50), -3em -1em rgba(0, 0, 0, .50), -2em -1em rgba(0, 0, 0, .50),
+        -1em -1em rgba(0, 0, 0, .50), 0em -1em rgba(0, 0, 0, .50), 1em -1em rgba(0, 0, 0, .50), 2em -1em rgba(0, 0, 0, .50),
+        3em -1em rgba(0, 0, 0, .50), 4em -1em rgba(0, 0, 0, .50), 5em -1em rgba(0, 0, 0, .50), 6em -1em rgba(0, 0, 0, .50),
+        7em -1em rgba(0, 0, 0, .50), 8em -1em rgba(0, 0, 0, .50), 9em -1em rgba(0, 0, 0, .50), 10em -1em rgba(0, 0, 0, .50),
+        11em -1em rgba(0, 0, 0, .25), 12em -1em rgba(0, 0, 0, .25), 13em -1em rgba(0, 0, 0, .25), 14em -1em rgba(0, 0, 0, .25),
+        /*0*/
+        -17em 0em rgba(0, 0, 0, .25), -16em 0em rgba(0, 0, 0, .25), -15em 0em rgba(0, 0, 0, .25), -14em 0em rgba(0, 0, 0, .25),
+        -13em 0em rgba(0, 0, 0, .50), -12em 0em rgba(0, 0, 0, .50), -11em 0em rgba(0, 0, 0, .50), -10em 0em rgba(0, 0, 0, .50),
+        -9em 0em rgba(0, 0, 0, .50), -8em 0em rgba(0, 0, 0, .50), -7em 0em rgba(0, 0, 0, .50), -6em 0em rgba(0, 0, 0, .50),
+        -5em 0em rgba(0, 0, 0, .50), -4em 0em rgba(0, 0, 0, .50), -3em 0em rgba(0, 0, 0, .50), -2em 0em rgba(0, 0, 0, .50),
+        -1em 0em rgba(0, 0, 0, .50), 0em 0em rgba(0, 0, 0, .50), 1em 0em rgba(0, 0, 0, .50), 2em 0em rgba(0, 0, 0, .50),
+        3em 0em rgba(0, 0, 0, .50), 4em 0em rgba(0, 0, 0, .50), 5em 0em rgba(0, 0, 0, .50), 6em 0em rgba(0, 0, 0, .50),
+        7em 0em rgba(0, 0, 0, .50), 8em 0em rgba(0, 0, 0, .50), 9em 0em rgba(0, 0, 0, .50), 10em 0em rgba(0, 0, 0, .50),
+        11em 0em rgba(0, 0, 0, .50), 12em 0em rgba(0, 0, 0, .50), 13em 0em rgba(0, 0, 0, .50), 14em 0em rgba(0, 0, 0, .50),
+        15em 0em rgba(0, 0, 0, .25), 16em 0em rgba(0, 0, 0, .25), 17em 0em rgba(0, 0, 0, .25), 18em 0em rgba(0, 0, 0, .25),
+        /*1*/
+        -13em 1em rgba(0, 0, 0, .25), -12em 1em rgba(0, 0, 0, .25), -11em 1em rgba(0, 0, 0, .25), -10em 1em rgba(0, 0, 0, .25),
+        -9em 1em rgba(0, 0, 0, .50), -8em 1em rgba(0, 0, 0, .50), -7em 1em rgba(0, 0, 0, .50), -6em 1em rgba(0, 0, 0, .50),
+        -5em 1em rgba(0, 0, 0, .50), -4em 1em rgba(0, 0, 0, .50), -3em 1em rgba(0, 0, 0, .50), -2em 1em rgba(0, 0, 0, .50),
+        -1em 1em rgba(0, 0, 0, .50), 0em 1em rgba(0, 0, 0, .50), 1em 1em rgba(0, 0, 0, .50), 2em 1em rgba(0, 0, 0, .50),
+        3em 1em rgba(0, 0, 0, .50), 4em 1em rgba(0, 0, 0, .50), 5em 1em rgba(0, 0, 0, .50), 6em 1em rgba(0, 0, 0, .50),
+        7em 1em rgba(0, 0, 0, .50), 8em 1em rgba(0, 0, 0, .50), 9em 1em rgba(0, 0, 0, .50), 10em 1em rgba(0, 0, 0, .50),
+        11em 1em rgba(0, 0, 0, .25), 12em 1em rgba(0, 0, 0, .25), 13em 1em rgba(0, 0, 0, .25), 14em 1em rgba(0, 0, 0, .25),
+        /*-2*/
+        -9em 2em rgba(0, 0, 0, .25), -8em 2em rgba(0, 0, 0, .25),
+        -7em 2em rgba(0, 0, 0, .25), -6em 2em rgba(0, 0, 0, .25), -5em 2em rgba(0, 0, 0, .25), -4em 2em rgba(0, 0, 0, .25),
+        -3em 2em rgba(0, 0, 0, .25), -2em 2em rgba(0, 0, 0, .25), -1em 2em rgba(0, 0, 0, .25), 0em 2em rgba(0, 0, 0, .25),
+        1em 2em rgba(0, 0, 0, .25), 2em 2em rgba(0, 0, 0, .25), 3em 2em rgba(0, 0, 0, .25), 4em 2em rgba(0, 0, 0, .25),
+        5em 2em rgba(0, 0, 0, .25), 6em 2em rgba(0, 0, 0, .25), 7em 2em rgba(0, 0, 0, .25), 8em 2em rgba(0, 0, 0, .25),
+        9em 2em rgba(0, 0, 0, .25), 10em 2em rgba(0, 0, 0, .25);
 }

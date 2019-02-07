@@ -114,8 +114,11 @@ function () {
 
     _defineProperty(this, "defaultConfig", {
       color: 'steelblue',
-      speed: 1 + Math.random() * 2,
-      position: 0
+      speed: 1 + Math.random() * 8,
+      position: {
+        x: 0,
+        y: 200 + Math.random() * 200
+      }
     });
 
     config = _objectSpread({}, this.defaultConfig, config);
@@ -156,13 +159,14 @@ function () {
   }, {
     key: "update",
     value: function update() {
-      this.position = this.position + this.speed;
+      this.position.x += this.speed;
 
-      if (this.position > window.innerWidth) {
+      if (this.position.x > window.innerWidth) {
         this.remove();
         this.onEscape();
       } else {
-        this.el.style.left = this.position + 'px';
+        this.el.style.left = this.position.x + 'px';
+        this.el.style.top = this.position.y + Math.sin(this.position.x / 100) * 100 + 'px';
       }
     }
   }, {
@@ -255,7 +259,8 @@ function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Game; });
 /* harmony import */ var _Bird__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Bird */ "./js/Bird.js");
-/* harmony import */ var _Counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Counter */ "./js/Counter.js");
+/* harmony import */ var _Hunter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Hunter */ "./js/Hunter.js");
+/* harmony import */ var _Counter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Counter */ "./js/Counter.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -275,6 +280,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Game =
 /*#__PURE__*/
 function () {
@@ -283,14 +289,14 @@ function () {
 
     _classCallCheck(this, Game);
 
-    _defineProperty(this, "birds", []);
+    _defineProperty(this, "entities", []);
 
     _defineProperty(this, "loopCounter", 0);
 
     _defineProperty(this, "removeBird", function (bird) {
-      var index = _this.birds.indexOf(bird);
+      var index = _this.entities.indexOf(bird);
 
-      _this.birds = [].concat(_toConsumableArray(_this.birds.slice(0, index)), _toConsumableArray(_this.birds.slice(index + 1)));
+      _this.entities = [].concat(_toConsumableArray(_this.entities.slice(0, index)), _toConsumableArray(_this.entities.slice(index + 1)));
     });
 
     _defineProperty(this, "updatePlayerPoints", function () {
@@ -301,23 +307,21 @@ function () {
       _this.counter.addBirdsPoint();
     });
 
-    this.createBirds();
+    this.createHunter();
     this.createCounter();
     this.loop();
   }
 
   _createClass(Game, [{
-    key: "createCounter",
-    value: function createCounter() {
-      this.counter = new _Counter__WEBPACK_IMPORTED_MODULE_1__["default"]();
+    key: "createHunter",
+    value: function createHunter() {
+      this.hunter = new _Hunter__WEBPACK_IMPORTED_MODULE_1__["default"]();
+      this.entities = [].concat(_toConsumableArray(this.entities), [this.hunter]);
     }
   }, {
-    key: "createBirds",
-    value: function createBirds() {
-      this.addBird();
-      this.addBird();
-      this.addBird();
-      this.addBird();
+    key: "createCounter",
+    value: function createCounter() {
+      this.counter = new _Counter__WEBPACK_IMPORTED_MODULE_2__["default"]();
     }
   }, {
     key: "addBird",
@@ -327,7 +331,7 @@ function () {
         onClick: this.updatePlayerPoints,
         onEscape: this.updateBirdsPoints
       };
-      this.birds = [].concat(_toConsumableArray(this.birds), [new _Bird__WEBPACK_IMPORTED_MODULE_0__["default"](config)]);
+      this.entities = [].concat(_toConsumableArray(this.entities), [new _Bird__WEBPACK_IMPORTED_MODULE_0__["default"](config)]);
     }
   }, {
     key: "loop",
@@ -335,8 +339,8 @@ function () {
       var _this2 = this;
 
       Math.random() < 1 / 60 && this.addBird();
-      this.birds.forEach(function (bird) {
-        return bird.update();
+      this.entities.forEach(function (entity) {
+        return entity.update();
       });
       requestAnimationFrame(function () {
         return _this2.loop();
@@ -345,6 +349,78 @@ function () {
   }]);
 
   return Game;
+}();
+
+
+
+/***/ }),
+
+/***/ "./js/Hunter.js":
+/*!**********************!*\
+  !*** ./js/Hunter.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Hunter; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Hunter =
+/*#__PURE__*/
+function () {
+  function Hunter() {
+    _classCallCheck(this, Hunter);
+
+    _defineProperty(this, "speed", 0);
+
+    this.el = this.render();
+    this.setupMovement();
+    this.position = window.innerWidth / 2;
+  }
+
+  _createClass(Hunter, [{
+    key: "update",
+    value: function update() {
+      this.position += this.speed;
+      this.el.style.left = this.position + 'px';
+    }
+  }, {
+    key: "setupMovement",
+    value: function setupMovement() {
+      var _this = this;
+
+      document.body.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowLeft') {
+          _this.speed = -5;
+        } else if (event.key === 'ArrowRight') {
+          _this.speed = 5;
+        }
+      });
+      document.body.addEventListener('keyup', function (event) {
+        if (['ArrowLeft', 'ArrowRight'].includes(event.key)) {
+          _this.speed = 0;
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var el = document.createElement('div');
+      el.className = 'hunter';
+      document.body.insertAdjacentElement('beforeend', el);
+      return el;
+    }
+  }]);
+
+  return Hunter;
 }();
 
 
